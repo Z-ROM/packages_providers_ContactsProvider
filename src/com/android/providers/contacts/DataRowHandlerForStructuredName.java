@@ -15,8 +15,8 @@
  */
 package com.android.providers.contacts;
 
-import android.annotation.OSELab;
-import android.annotation.OSELab.Classification;
+import android.annotation.ZLab;
+import android.annotation.ZLab.Classification;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -32,8 +32,8 @@ import android.text.TextUtils;
 import com.android.providers.contacts.SearchIndexManager.IndexBuilder;
 import com.android.providers.contacts.aggregation.ContactAggregator;
 
-import com.android.internal.util.ose.identicons.Identicon;
-import com.android.internal.util.ose.identicons.IdenticonFactory;
+import com.android.internal.util.zrom.identicons.Identicon;
+import com.android.internal.util.zrom.identicons.IdenticonFactory;
 
 /**
  * Handler for email address data rows.
@@ -43,10 +43,10 @@ public class DataRowHandlerForStructuredName extends DataRowHandler {
     private final NameLookupBuilder mNameLookupBuilder;
     private final StringBuilder mSb = new StringBuilder();
 
-    @OSELab(name="QuickStats", classification=Classification.NEW_FIELD)
+    @ZLab(name="QuickStats", classification=Classification.NEW_FIELD)
     private final ContentResolver mResolver;
 
-    @OSELab(name="QuickStats", classification=Classification.CHANGE_CODE)
+    @ZLab(name="QuickStats", classification=Classification.CHANGE_CODE)
     public DataRowHandlerForStructuredName(Context context, ContactsDatabaseHelper dbHelper,
             ContactAggregator aggregator, NameSplitter splitter,
             NameLookupBuilder nameLookupBuilder) {
@@ -57,7 +57,7 @@ public class DataRowHandlerForStructuredName extends DataRowHandler {
     }
 
     @Override
-    @OSELab(name="QuickStats", classification=Classification.CHANGE_CODE)
+    @ZLab(name="QuickStats", classification=Classification.CHANGE_CODE)
     public long insert(SQLiteDatabase db, TransactionContext txContext, long rawContactId,
             ContentValues values) {
         fixStructuredNameComponents(values, values);
@@ -252,7 +252,7 @@ public class DataRowHandlerForStructuredName extends DataRowHandler {
         }
     }
 
-    @OSELab(name="QuickStats", classification=Classification.NEW_METHOD)
+    @ZLab(name="QuickStats", classification=Classification.NEW_METHOD)
     private void insertIdenticon(SQLiteDatabase db, TransactionContext txContext,
                                  long rawContactId, String name) {
         if (!TextUtils.isEmpty(name)) {
